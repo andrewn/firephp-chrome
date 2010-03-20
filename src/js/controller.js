@@ -30,4 +30,4 @@ var Controller = (function(){
     return Controller;
 })();
 
-new Controller('http://pal.sandbox.dev.bbc.co.uk/tilechef/demo/1/1/1');
+new Controller( document.location.toString() );
