@@ -1,0 +1,44 @@
+{
+  // Required
+  "name": "My Extension",
+  "version": "0.0.1",
+
+  // Recommended
+  "description": "A plain text description",
+  //"icons": { ... },
+
+  // Pick one (or none)
+  //"browser_action": {...},
+  "page_action": {
+      "default_icon": "img/download.png", // required
+      "default_title": "Do action"//,    // optional; shown in tooltip
+      //"popup": "popup.html"            // optional
+    },
+    
+//"theme": {...},
+
+  // Add any of these that you need
+  //"background_page": "aFile.html",
+  //"chrome_url_overrides": {...},
+  "content_scripts": [{
+        "matches" : [
+          "http://*/*",
+          "https://*/*"
+        ],
+        "js" : [
+            "js/util.js",
+            "js/connection.js",
+            "js/logger.js",
+            "js/remote_service.js",
+            "js/controller.js"
+        ],
+        "run_at" : "document_idle",
+        "all_frames" : false
+      }]
+/*  "minimum_chrome_version": "versionString",
+  "options_page": "aFile.html",
+  "permissions": [...],
+  "plugins": [...],
+  "update_url": "http://path/to/updateInfo.xml"
+*/
+}
