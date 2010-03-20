@@ -1,0 +1,30 @@
+Index: Zend/Wildfire/Channel/HttpHeaders.php
+===================================================================
+--- Zend/Wildfire/Channel/HttpHeaders.php	(revision 21581)
++++ Zend/Wildfire/Channel/HttpHeaders.php	(working copy)
+@@ -270,11 +270,20 @@
+             return true;
+         }
+ 
+-        return ($this->getResponse()->canSendHeaders() 
+-                && preg_match_all(
+-                    '/\s?FirePHP\/([\.|\d]*)\s?/si',
+-                    $this->getRequest()->getHeader('User-Agent'),
+-                    $m
++        return (
++            $this->getResponse()->canSendHeaders() 
++            && (
++                    preg_match_all(
++                        '/\s?FirePHP\/([\.|\d]*)\s?/si',
++                        $this->getRequest()->getHeader('User-Agent'),
++                        $m
++                    )
++                ||
++                    preg_match_all(
++                        '/\s?FirePHP\/([\.|\d]*)\s?/si',
++                        $this->getRequest()->getHeader('X-Wf-User-Agent'),
++                        $m
++                    )
+                 )
+         );
+     }
