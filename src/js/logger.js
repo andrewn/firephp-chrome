@@ -20,29 +20,42 @@ var Logger = (function(){
         ],
         
         logging: [
-            /X-Wf-[\d]*-[\d]*-[\d]*-[\d]*/
+            /X-Wf-[\d]*-[\d]*-[\d]*-([\d]*)/
         ],
         
         commandMessage: /(\d*) *\| *(\[.*\])\ *| */,
         
         log: function ( headers ) {
+            var logMessages = [];
             for ( item in headers ) {
-                if ( this.logging[0].test(item) ) {
+                var logKey = item.match(this.logging[0]);
+                if (logKey) {
                     var commandParts = headers[item].match( this.commandMessage ),
                         size = commandParts[1],
                         msg  = JSON.parse( commandParts[2] ),
                         meta = msg[0],
-                        body = msg[1];
-                        
+                        body = msg[1],
+                        idx = parseInt(logKey[1], 10);
+                    
                     if ( meta["Type"] in this.wfToChromeMap ) {
                         var action = this.wfToChromeMap[meta["Type"]];
-                        console[action]( body );
+                        logMessages.push({
+                            'idx': idx,
+                            'meta': meta,
+                            'body': body,
+                            'action': action
+                        });
                     }
                     
                 } else {
                     //console.warn('not logging info', item);
                 }                
             }
+
+            logMessages.sort(function (a, b) { return a.idx - b.idx; });
+            logMessages.forEach(function (logItem) {
+                console[logItem.action]( logItem.body );
+            });
         }
         
     };
