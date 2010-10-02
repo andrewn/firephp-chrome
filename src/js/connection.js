@@ -2,34 +2,33 @@ var Connection = (function(){
     function Connection(){};
     Connection.prototype = {
         
+        FIREPHP_REQUEST_HEADER    : 'X-FirePHP-Version',
+        FIREPHP_SUPPORTED_VERSION : '0.4',
+        
         getHeaders: function ( url, callback ) {
             var req = new XMLHttpRequest(),
                 headers = {};
             
-            // Need to let server know we are a FirePHP user agent
-            var ua = navigator.userAgent + ' FirePHP/0.4';
-            
             req.onreadystatechange = util.bind( this, function() { 
-    			if(req.readyState == 4) {
-    				if(req.status == 200) {
-    					headers = req.getAllResponseHeaders();
-    				} else {
-    				    throw new Error('Exception gettting HEAD');
-    				}	
+        			if(req.readyState == 4) {
+        				if(req.status == 200) {
+        					headers = req.getAllResponseHeaders();
+        				} else {
+        				    throw new Error('Exception gettting HEAD');
+        				}	
     				    				
-    				headers = this._parseHeaders( headers );
+        				headers = this._parseHeaders( headers );
     				    				
-    				callback( headers );
-    			} 
-    		});
+        				callback( headers );
+        			} 
+        		});
     		
             req.open("HEAD", url, true); 
             
-            // @HACK Can't set the User-Agent in Chrome so need
-            // to use something else (this requires the WildFire)
-            // server library to be patched
-            //req.setRequestHeader( 'User-Agent', ua );
-            req.setRequestHeader( 'X-Wf-User-Agent', ua );
+            // Instead of changing the User-Agent (which isn't possible in 
+            // Chrome), set a header as documented here:
+            //    http://bit.ly/bxK4Oi
+            req.setRequestHeader( this.FIREPHP_REQUEST_HEADER, this.FIREPHP_SUPPORTED_VERSION );
             req.send(null);
             
             
