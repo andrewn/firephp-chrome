@@ -1,13 +1,9 @@
 
 FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.
 
-The primary limitation of this is that the FirePHP server-side implementation (in Zend Framework) looks for a string containing 'FirePHP' in the User-Agent request header. Chrome currently doesn't allow you to change this and so I've patched Zend Framework to also respond to the 'X-Wf-User-Agent' header. This patch is in zend/wildfire-user-agent.patch.
-
 TODO:
 ----
 
 - support all logging types (currently supports WARN, LOG, INFO, ERROR)
-- fill in manifest file for extension properly
 - package up as chrome crx file
 - autoupdating
-- submit Zend patch
