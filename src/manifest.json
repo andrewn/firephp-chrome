@@ -1,24 +1,40 @@
 {
-  // Required
   "name": "FirePHP-chrome",
-  "version": "0.0.1",
-
-  // Recommended
+  "version": "0.0.2",
+  
   "description": "FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.",
+  "permissions": [
+    "experimental",
+    "tabs",
+    "history",
+    /* Request permissions for all sites */
+    "http://*/*",
+    "https://*/*"
+  ],
+  
+  /*
+    The background listens for page
+    load events, parses the wildfire 
+    headers and passes to a content script
+    in the loaded page.
+  */
+  "background_page": "html/controller.html",
+  
+  /*
+    The content script ouputs to the 
+    page's console.
+  */
   "content_scripts": [{
         "matches" : [
           "http://*/*",
           "https://*/*"
         ],
         "js" : [
-            "js/util.js",
-            "js/connection.js",
-            "js/logger.js",
-            "js/remote_service.js",
-            "js/controller.js"
+            "js/bridge.js"
         ],
         "run_at" : "document_idle",
         "all_frames" : false
   }]
+  
 }
 

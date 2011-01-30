@@ -5,7 +5,7 @@
 var Logger = (function(){
     function Logger(){};
     Logger.prototype = {
-        
+                
          wfToChromeMap: {
              "LOG" : "log",
              "INFO": "info",
@@ -53,9 +53,8 @@ var Logger = (function(){
             }
 
             logMessages.sort(function (a, b) { return a.idx - b.idx; });
-            logMessages.forEach(function (logItem) {
-                console[logItem.action]( logItem.body );
-            });
+    
+            return logMessages;
         }
         
     };

@@ -1,6 +1,7 @@
 var Controller = (function(){
-    function Controller( remote_url ){
+    function Controller( remote_url, tab ){
         this.url = remote_url;
+        this.tab = tab;
         
         // Model
         this.remote = new RemoteService();
@@ -15,7 +16,7 @@ var Controller = (function(){
         this.remote.on( 
             'logged_items',
             function(items) {
-                self.displayLoggedItems( items );
+                self.displayLoggedItems( items, self.tab );
             });
         
         // tell model to load data
@@ -23,11 +24,16 @@ var Controller = (function(){
     };
     Controller.prototype = {
         
-        displayLoggedItems: function( items ) {
-            this.viewer.log( items );
+        displayLoggedItems: function( items, tab ) {
+            var consoleMessages = this.viewer.log( items );
+            chrome.tabs.sendRequest( 
+              tab.id, 
+              consoleMessages
+              /* responseCallback - not used */
+            );
         }
     };
     return Controller;
 })();
 
-new Controller( document.location.toString() );
+//new Controller( document.location.toString() );
