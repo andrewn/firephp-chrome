@@ -14,7 +14,7 @@ var Connection = (function(){
         				if(req.status == 200) {
         					headers = req.getAllResponseHeaders();
         				} else {
-        				    throw new Error('Exception gettting HEAD');
+        				    throw new Error('Exception gettting HEAD (status: %o)', (req.status?re.status:null));
         				}	
     				    				
         				headers = this._parseHeaders( headers );

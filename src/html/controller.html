@@ -8,7 +8,11 @@
     <script src="../js/controller.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script type="text/javascript" charset="utf-8">
-      Bootstrap.init();
+      try {
+        Bootstrap.init();
+      } catch(e) {
+        console.error('Error on Bootstrap.init: ', e);
+      }
     </script>
   </head>
 </html>
