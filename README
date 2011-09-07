@@ -1,6 +1,11 @@
 
 FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.
 
+Install
+-------
+
+https://github.com/andrewn/firephp-chrome/raw/master/dist/firephp-0.1.0.crx
+
 TODO:
 ----
 
