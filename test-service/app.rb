@@ -5,11 +5,24 @@ require 'json'
 class MyApp < Sinatra::Base
     get '/' do
       log("Hello from firephp")
-      info("This is a information")
+      info("This is an information")
       warn("This is a warning")
       error("This is an error")
 
-      'Hello world!'
+      html = @firephp.map { |item| "<p><span class='type'>#{item[:type]}</span> #{item[:object]}</p>" }
+      html = html.join("\n")
+
+      <<-body
+      <style type="text/css">
+        h1          { font    : bold 2em sans-serif; }
+        p           { font    : bold 1em sans-serif; }
+        .type       { color   : #666; }
+        .type:after { content : ":";  }
+      </style>
+      <h1>FirePHP headers</h1>
+      <p>Open the web inspector and you should see the following FirePHP log messages.</p>
+      #{html}
+      body
     end
 
     before do
