@@ -5,8 +5,9 @@
   "description": "FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.",
   "permissions": [
     "experimental",
+    "contextMenus",
     "tabs",
-    "history",
+    //"history",
     /* Request permissions for all sites */
     "http://*/*",
     "https://*/*"
@@ -18,7 +19,8 @@
     headers and passes to a content script
     in the loaded page.
   */
-  "background_page": "html/controller.html",
+  "background_page": "html/background.html",
+  "devtools_page": "html/dev_tools.html",
   
   /*
     The content script ouputs to the 

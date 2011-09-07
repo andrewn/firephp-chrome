@@ -45,15 +45,14 @@ var Logger = (function(){
                             'body': body,
                             'action': action
                         });
-                    }
-                    
+                    }              
                 } else {
                     //console.warn('not logging info', item);
                 }                
             }
 
             logMessages.sort(function (a, b) { return a.idx - b.idx; });
-    
+                        
             return logMessages;
         }
         
