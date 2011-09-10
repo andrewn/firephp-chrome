@@ -10,7 +10,6 @@ chrome.experimental.webRequest.onBeforeSendHeaders.addListener(
             name  : "X-FirePHP-Version",
             value : "0.6"
         });
-        console.log(details);
         return {
             requestHeaders: headers
         }
