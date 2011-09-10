@@ -13,14 +13,19 @@ class MyApp < Sinatra::Base
       html = html.join("\n")
 
       <<-body
-      <style type="text/css">
-        h1          { font    : bold 2em sans-serif; }
-        p           { font    : bold 1em sans-serif; }
-        .type       { color   : #666; }
-        .type:after { content : ":";  }
-      </style>
-      <h1>FirePHP headers</h1>
-      <p>Open the web inspector and you should see the following FirePHP log messages.</p>
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style type="text/css">
+            h1          { font    : bold 2em sans-serif; }
+            p           { font    : bold 1em sans-serif; }
+            .type       { color   : #666; }
+            .type:after { content : ":";  }
+          </style>
+          <title>FirePHP headers</title>
+        <body>
+          <h1>FirePHP headers</h1>
+          <p>Open the web inspector and you should see the following FirePHP log messages.</p>
       #{html}
       body
     end
