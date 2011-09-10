@@ -40,8 +40,8 @@ class MyApp < Sinatra::Base
 
     def is_firephp_client(request)
       has_firephp_header = !!request.env['HTTP_X_FIREPHP_VERSION']
-      #has_firephp_user_agent = request.user_agent
-      has_firephp_header
+      has_firephp_user_agent = !!request.user_agent[/FirePHP/]
+      has_firephp_header or has_firephp_user_agent
     end
 
     def log(message)
