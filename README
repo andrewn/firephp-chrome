@@ -4,11 +4,10 @@ FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to 
 Install
 -------
 
-https://github.com/andrewn/firephp-chrome/raw/master/dist/firephp-0.1.0.crx
+https://github.com/andrewn/firephp-chrome/raw/master/dist/firephp-0.2.0.crx
 
 TODO:
 ----
 
 - support all logging types (currently supports WARN, LOG, INFO, ERROR)
-- package up as chrome crx file
 - autoupdating
