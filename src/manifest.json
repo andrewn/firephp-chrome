@@ -1,6 +1,6 @@
 {
   "name": "FirePHP-chrome",
-  "version": "0.1.0",
+  "version": "0.2.0",
   
   "description": "FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.",
   "permissions": [
