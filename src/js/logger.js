@@ -10,7 +10,8 @@ var Logger = (function(){
              "LOG" : "log",
              "INFO": "info",
              "WARN": "warn",
-             "ERROR":"error"
+             "ERROR": "error",
+             "EXCEPTION": "exception"
          },
         
         meta: [
