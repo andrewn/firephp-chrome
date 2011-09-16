@@ -30,7 +30,7 @@ chrome.extension.onRequest.addListener(
 
     var items = logger.log(headersMap);
                  
-    if (items.length) {
+    if (items.length) {                
         chrome.tabs.sendRequest(
             request.tabId,
             items
