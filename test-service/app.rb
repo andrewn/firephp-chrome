@@ -8,6 +8,20 @@ class MyApp < Sinatra::Base
       info("This is an information")
       warn("This is a warning")
       error("This is an error")
+      e = {
+        "Class"   => "Exception",
+        "Message" => "Test Exception",
+        "File"    => "<file>",
+        "Line"    => 17,
+        "Type"    => "throw",
+        "Trace"   => [
+          "file"  => "<File>",
+          "line"  => 20,
+          "function" => "test",
+          "args"  => [ "hello", "goodbye" ]
+        ]
+      }
+      exception e
 
       html = @firephp.map { |item| "<p><span class='type'>#{item[:type]}</span> #{item[:object]}</p>" }
       html = html.join("\n")
@@ -60,6 +74,10 @@ class MyApp < Sinatra::Base
       log_item("INFO", message)
     end
 
+    def exception(message)
+      log_item("EXCEPTION", message)
+    end
+
     def log_item(type, message)
         msg = {}
         msg[:type]   = type
@@ -75,7 +93,7 @@ class MyApp < Sinatra::Base
     
         count = 1
         @firephp.each do |o|
-          next if !(o[:type] =~ /^(LOG|INFO|WARN|ERROR)$/)
+          next if !(o[:type] =~ /^(LOG|INFO|WARN|ERROR|EXCEPTION)$/)
           msg = "[#{{ "Type" => o[:type] }.to_json},#{o[:object].to_json}]"
           headers["X-Wf-1-1-1-#{count}"] = "#{msg.length}|#{msg}|"
           count+=1
