@@ -34,16 +34,32 @@
     return result.join(', ');
   };
 
+  /*
+    Map action types to specific outputs
+  */
+  var actionsToOutputMap = {
+    'exception' : function (type, body) {
+      console.error("Exception '" + body.Class + "' with message '" + body.Message + "' in " + shortPath(body.File) + ':' + body.Line);
+      dirStacktrace(body.Trace);
+    },
+    'default'  : function (type, body) {
+      if (console[type]) { console[type]( body ); }
+    }
+  }
+
+  var outputForAction = function (action, body) {
+    if (actionsToOutputMap[action]) {
+      actionsToOutputMap[action]( action, body );
+    } else {
+      actionsToOutputMap['default']( action, body );
+    }
+  };
+
   chrome.extension.onRequest.addListener(
     function(request, sender, sendResponse) {
       request.forEach(
         function ( item ) {
-          if (item.action === 'exception') {
-            console.error("Exception '" + item.body.Class + "' with message '" + item.body.Message + "' in " + shortPath(item.body.File) + ':' + item.body.Line);
-            dirStacktrace(item.body.Trace);
-          } else {
-            console[item.action]( item.body );
-          }
+          outputForAction( item.action, item.body );
         }
       );
     }
