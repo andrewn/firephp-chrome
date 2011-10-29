@@ -67,5 +67,6 @@ It displays a list of the items being logged and viewing the console should show
 
 TODO:
 ----
-- support more logging types
+- support more logging types (from here: http://reference.developercompanion.com/Tools/FirePHPCompanion/Run/Examples/)
+- remove test service and use developer comapnion examples
 - autoupdating
