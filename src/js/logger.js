@@ -15,13 +15,13 @@ var Logger = (function(){
          },
         
         meta: [
-            /X-Wf-Protocol-[\d]*/,
-            /X-Wf-[\d]*-Plugin-[\d]*/,
-            /X-Wf-[\d]*-Structure-[\d]*/
+            /X-Wf-Protocol-[\d]*/i,
+            /X-Wf-[\d]*-Plugin-[\d]*/i,
+            /X-Wf-[\d]*-Structure-[\d]*/i
         ],
         
         logging: [
-            /X-Wf-[\d]*-[\d]*-[\d]*-([\d]*)/
+            /X-Wf-[\d]*-[\d]*-[\d]*-([\d]*)/i
         ],
         
         commandMessage: /(\d*) *\| *(\[.*\])\ *| */,
