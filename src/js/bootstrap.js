@@ -12,6 +12,7 @@ var Bootstrap = (function (){
           type: STABLE,
           ns  : chrome 
         };
+
       } else if (chrome.experimental && chrome.experimental.webRequest) {
         ns = {
           type: EXPERIMENTAL,
@@ -28,6 +29,9 @@ var Bootstrap = (function (){
           //, tabId: tabId
         },
         extraInfoSpec = ["statusLine", "responseHeaders"];
+
+    console.log ("using namespace: " + ns);
+
     if ( apiNs ) {
       apiNs.ns.webRequest.onCompleted.addListener(
         function(details) {
@@ -78,14 +82,14 @@ var Bootstrap = (function (){
       });
       */
        
-      chrome.experimental.devtools.resources.getHAR(function(result) {
+      chrome.devtools.network.getHAR(function(result) {
         var entries = result.entries;
         if (!entries.length) {
           Console.warn("ChromeFirePHP suggests that you reload the page to track" +
               " FirePHP messages for all the resources");
         }
 
-        chrome.experimental.devtools.resources.onFinished.addListener(
+        chrome.devtools.network.onRequestFinished.addListener(
           function () { chrome.experimental.devtools.log("test"); }
         );
       });

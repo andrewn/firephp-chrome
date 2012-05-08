@@ -1,20 +1,27 @@
 var logger   = new Logger();
 
+console.log("Firing up FirePHP Debugger");
+
 // Add the X-FirePHP-Version header to all requests
 var filter, 
     extraInfoSpec = ["blocking", "requestHeaders"];
-chrome.experimental.webRequest.onBeforeSendHeaders.addListener(
+
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
     function(details) {
         var headers = details.requestHeaders;
+
+	console.warn("Inserting X-FirePHP header");
+
         headers.push({
             name  : "X-FirePHP-Version",
-            value : "0.6"
+            value : "0.6.1"
         });
         return {
             requestHeaders: headers
         }
     }, 
-    /* RequestFilter */ filter, 
+    {urls: ["<all_urls>"]},
     /* array of string */ extraInfoSpec
 );
 
@@ -38,3 +45,5 @@ chrome.extension.onRequest.addListener(
     }
   }
 );
+
+console.log("Completed BG Page Load");

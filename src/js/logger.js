@@ -29,6 +29,7 @@ var Logger = (function(){
         log: function ( headers ) {
             var logMessages = [];
             for ( item in headers ) {
+		console.log("header" + item);
                 var logKey = item.match(this.logging[0]);
                 if (logKey) {
                     var commandParts = headers[item].match( this.commandMessage ),
@@ -48,7 +49,7 @@ var Logger = (function(){
                         });
                     }              
                 } else {
-                    //console.warn('not logging info', item);
+                    console.warn('not logging info', item);
                 }                
             }
 
