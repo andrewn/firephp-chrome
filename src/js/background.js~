@@ -32,6 +32,7 @@ chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
     var headersMap = {};
     request.headers.forEach(function (item) {
+	console.log(item.value);
         headersMap[item.name] = item.value;
     });
 
@@ -45,5 +46,3 @@ chrome.extension.onRequest.addListener(
     }
   }
 );
-
-console.log("Completed BG Page Load");

@@ -5,7 +5,6 @@
   "description": "FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to display FirePHP messages.",
   "permissions": [
     "background",
-    "experimental",
     "tabs",
     "webRequest",
     "webRequestBlocking",

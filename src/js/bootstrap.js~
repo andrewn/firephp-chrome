@@ -29,9 +29,6 @@ var Bootstrap = (function (){
           //, tabId: tabId
         },
         extraInfoSpec = ["statusLine", "responseHeaders"];
-
-    console.log ("using namespace: " + ns);
-
     if ( apiNs ) {
       apiNs.ns.webRequest.onCompleted.addListener(
         function(details) {

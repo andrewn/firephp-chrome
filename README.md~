@@ -4,10 +4,6 @@ FirePHP-chrome is an extension for Google Chrome to allow the Chrome console to 
 For more details of FirePHP: 
   http://www.firephp.org/
 
-Revision History
---------------
-0.5.0: Updated to support Chrome 19 changes: manifest permissons, non-experimental dev components.
-
 How to install
 --------------
 This extension uses Chrome's "experimental extensions" so you'll need to enable these in your browser first:

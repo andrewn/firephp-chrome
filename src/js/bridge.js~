@@ -54,15 +54,5 @@
       actionsToOutputMap['default']( action, body );
     }
   };
-
-  chrome.extension.onRequest.addListener(
-    function(request, sender, sendResponse) {
-      request.forEach(
-        function ( item ) {
-          outputForAction( item.action, item.body );
-        }
-      );
-    }
-  );
   
 })();
