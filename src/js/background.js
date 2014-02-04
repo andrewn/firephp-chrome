@@ -3,7 +3,9 @@ var logger   = new Logger();
 // Add the X-FirePHP-Version header to all requests
 var filter, 
     extraInfoSpec = ["blocking", "requestHeaders"];
-chrome.experimental.webRequest.onBeforeSendHeaders.addListener(
+
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
     function(details) {
         var headers = details.requestHeaders;
         headers.push({
@@ -14,7 +16,7 @@ chrome.experimental.webRequest.onBeforeSendHeaders.addListener(
             requestHeaders: headers
         }
     }, 
-    /* RequestFilter */ filter, 
+    {urls: ["<all_urls>"]},
     /* array of string */ extraInfoSpec
 );
 
