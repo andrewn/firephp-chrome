@@ -17,7 +17,7 @@ There are 2 ways to install the extension.
 ### Using CRX file:
 1. Click on this link: 
    https://github.com/andrewn/firephp-chrome/raw/master/dist/firephp-0.3.0.crx
-2. Chrome will warm you about extensions and apps, click "Continue"
+2. Chrome will warn you about extensions and apps, click "Continue"
 3. Chrome will ask you if you want to "Install FirePHP-chrome", click "Install"
 
 ### From source (if you want to develop the extension):
